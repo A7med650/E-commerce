@@ -7,6 +7,8 @@ from django.utils.text import slugify
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 
+from froala_editor.fields import FroalaField
+
 # Create your models here.
 
 
@@ -24,8 +26,13 @@ class Category(models.Model):
 
     name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, null=True)
+    full_path_category = models.CharField(max_length=2000, null=True, blank=True)
     parent = models.ForeignKey(
         'self', on_delete=models.CASCADE, blank=True, null=True)
+    
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
 
     def __str__(self):
         full_path = [self.name]
@@ -38,6 +45,7 @@ class Category(models.Model):
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         self.slug = slugify(self.name) + "-" + \
             str(urlsafe_base64_encode(force_bytes(self.id)))
+        self.full_path_category = self.__str__()
         super().save(force_insert=False, force_update=False, using=None, update_fields=None)
 
 
@@ -45,7 +53,7 @@ class Product(models.Model):
     """Model definition for Product."""
 
     title = models.CharField(max_length=120)
-    description = models.TextField()
+    description = FroalaField(theme='gray')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     price = models.DecimalField(decimal_places=2, max_digits=100)
     sale_price = models.DecimalField(

@@ -19,6 +19,34 @@ class InlineProductImage(admin.StackedInline):
 class ProductAdmin(admin.ModelAdmin):
     """display Model of Product with some modifications to its functionality."""
 
+    fieldsets = (
+        (None, {
+            "fields": (
+                'title', 'description',
+            ),
+        }),
+        ('Choose Category', {
+            "fields": (
+                'category',
+            ),
+        }),
+        ('Price and Sale price', {
+            "fields": (
+                'price', 'sale_price',
+            ),
+        }),
+        ('Prime Image', {
+            "fields": (
+                'image',
+            ),
+        }),
+        (None, {
+            "fields": (
+                'active',
+            ),
+        }),
+    )
+
     search_fields = ['title', 'description']
     list_display = ['title', 'price', 'active', 'update']
     list_filter = ['active']
@@ -48,8 +76,10 @@ class CategoryAdmin(admin.ModelAdmin):
         form.base_fields['parent'].queryset = Category.objects.filter(
             id__in=category_list)
         return form
-
+    
     readonly_fields = ['slug', ]
+    ordering = ('full_path_category',)
+
 
     class Meta:  # pylint: disable=too-few-public-methods
         """Define the class name of the model"""

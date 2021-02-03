@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'simpleui',  # new admin panel
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'products',
+    'froala_editor',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +130,22 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/'media'
+
+FROALA_EDITOR_PLUGINS = ('char_counter', 'align',
+                         'colors', 'emoticons', 'entities', 'font_family', 'font_size', 'fullscreen', 'line_breaker',
+                         'link', 'lists', 'paragraph_format', 'paragraph_style', 'quote', 'special_characters')
+
+
+# SIMPLEUI
+
+# SIMPLEUI_HOME_PAGE = 'https://www.baidu.com'
+# SIMPLEUI_HOME_TITLE = 'My Home Title'
+# SIMPLEUI_HOME_ICON = 'fa fa-user'
+
+# SIMPLEUI_INDEX = 'https://www.88cto.com'
+
+# SIMPLEUI_LOGO = '/static/alawalredlogo.png'
+
+SIMPLEUI_HOME_INFO = False
+# SIMPLEUI_HOME_QUICK = False
+# SIMPLEUI_HOME_ACTION = False
