@@ -133,7 +133,7 @@ MEDIA_ROOT = BASE_DIR/'media'
 
 FROALA_EDITOR_PLUGINS = ('char_counter', 'align',
                          'colors', 'emoticons', 'entities', 'font_family', 'font_size', 'fullscreen', 'line_breaker',
-                         'link', 'lists', 'paragraph_format', 'paragraph_style', 'quote', 'special_characters')
+                         'link', 'lists', 'paragraph_format', 'paragraph_style', 'quote', 'special_characters', 'table')
 
 
 # SIMPLEUI

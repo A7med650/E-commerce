@@ -11,7 +11,7 @@
             <div class="pd-breadcrumb u-s-m-b-30">
               <ul class="pd-breadcrumb__list">
                 <li class="has-separator">
-                  <a href="index.hml">Home</a>
+                  <a href="{% url 'products:home' %}">Home</a>
                 </li>
                 <li class="has-separator">
                   <a href="shop-side-version-2.html">Electronics</a>
@@ -31,7 +31,7 @@
               <div class="pd-wrap">
                 <div id="js-product-detail-modal">
                   <div>
-                    <img class="u-img-fluid" src="{% static 'images/product/product-d-1.jpg' %}" alt="">
+                    <img class="u-img-fluid" id="image1" src="" alt="">
                   </div>
                   <div>
                     <img class="u-img-fluid" src="{% static 'images/product/product-d-2.jpg' %}" alt="">
@@ -50,7 +50,9 @@
               <div class="u-s-m-t-15">
                 <div id="js-product-detail-modal-thumbnail">
                   <div>
-                    <img class="u-img-fluid" src="{% static 'images/product/product-d-1.jpg' %}" alt="">
+                    <img style="position: absolute;" class="u-img-fluid" id="image1-slide" src="" alt="">
+                  </div>
+                  <div id="id_0">
                   </div>
                   <div>
                     <img class="u-img-fluid" src="{% static 'images/product/product-d-2.jpg' %}" alt="">
@@ -73,12 +75,12 @@
             <!--====== Product Right Side Details ======-->
             <div class="pd-detail">
               <div>
-                <span class="pd-detail__name">Nikon Camera 4k Lens Zoom Pro</span>
+                <span class="pd-detail__name"></span>
               </div>
               <div>
                 <div class="pd-detail__inline">
-                  <span class="pd-detail__price">$6.99</span>
-                  <span class="pd-detail__discount">(76% OFF)</span><del class="pd-detail__del">$28.97</del>
+                  <span class="pd-detail__price"></span>
+                  <del class="pd-detail__del">$28.97</del>
                 </div>
               </div>
               <div class="u-s-m-b-15">
@@ -89,16 +91,7 @@
                 </div>
               </div>
               <div class="u-s-m-b-15">
-                <div class="pd-detail__inline">
-                  <span class="pd-detail__stock">200 in stock</span>
-                  <span class="pd-detail__left">Only 2 left</span>
-                </div>
-              </div>
-              <div class="u-s-m-b-15">
-                <span class="pd-detail__preview-desc">Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
-                  1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-                  book.</span>
+                <span class="pd-detail__preview-desc"></span>
               </div>
               <div class="u-s-m-b-15">
                 <div class="pd-detail__inline">

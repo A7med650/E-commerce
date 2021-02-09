@@ -45,3 +45,10 @@ def define(value):
     """this tag used to change a value."""
 
     return value
+
+
+@register.simple_tag
+def get_id(value):
+
+    print('value => ', value)
+    return value

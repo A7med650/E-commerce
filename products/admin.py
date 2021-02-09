@@ -55,6 +55,19 @@ class ProductAdmin(admin.ModelAdmin):
     readonly_fields = ['slug', ]
     inlines = [InlineProductImage]
 
+    def get_form(self, request, obj=None, **kwargs):
+        category_object = Category.objects.all()
+        category_list = []
+        count = 1
+        for category in category_object:
+            if len(category.__str__().split(' ==> ')) > 1:
+                category_list.append(count)
+            count += 1
+        form = super().get_form(request, obj, **kwargs)
+        form.base_fields['category'].queryset = Category.objects.filter(
+            id__in=category_list).order_by('full_path_category')
+        return form
+
     class Meta:  # pylint: disable=too-few-public-methods
         """Define the class name of the model"""
         model = Product
@@ -76,10 +89,9 @@ class CategoryAdmin(admin.ModelAdmin):
         form.base_fields['parent'].queryset = Category.objects.filter(
             id__in=category_list)
         return form
-    
+
     readonly_fields = ['slug', ]
     ordering = ('full_path_category',)
-
 
     class Meta:  # pylint: disable=too-few-public-methods
         """Define the class name of the model"""
