@@ -74,12 +74,17 @@ def product_quick_view(request, id):
         'product_description': product.description,
         'product_sale_price': product.sale_price,
         'product_images': product_images_object,
+        'category_list': product.get_cat_list,
     }
     return JsonResponse(context)
 
 
-def product_detail(request):
-    product = Product.objects.all().first()
+def product_detail(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+    product_images = ProductImage.objects.filter(product=product)
 
-    context = {'product': product}
+    context = {
+        'product': product,
+        'product_images': product_images,
+    }
     return render(request, 'product-detail.html', context)

@@ -100,8 +100,8 @@ class Product(models.Model):
         while k is not None:
             breadcrumb.append(k.name)
             k = k.parent
-        for i in range(len(breadcrumb)-1):
-            breadcrumb[i] = '/'.join(breadcrumb[-1:i-1:-1])
+        # for i in range(len(breadcrumb)-1):
+        #     breadcrumb[i] = ' ==> '.join(breadcrumb[-1:i-1:-1])
         return breadcrumb[-1:0:-1]
 
 

@@ -10,18 +10,11 @@
             <!--====== Product Breadcrumb ======-->
             <div class="pd-breadcrumb u-s-m-b-30">
               <ul class="pd-breadcrumb__list">
-                <li class="has-separator">
+
+                <li id="separator_0" class="has-separator has">
                   <a href="{% url 'products:home' %}">Home</a>
                 </li>
-                <li class="has-separator">
-                  <a href="shop-side-version-2.html">Electronics</a>
-                </li>
-                <li class="has-separator">
-                  <a href="shop-side-version-2.html">DSLR Cameras</a>
-                </li>
-                <li class="is-marked">
-                  <a href="shop-side-version-2.html">Nikon Cameras</a>
-                </li>
+
               </ul>
             </div>
             <!--====== End - Product Breadcrumb ======-->
@@ -52,18 +45,18 @@
                   <div>
                     <img style="position: absolute;" class="u-img-fluid" id="image1-slide" src="" alt="">
                   </div>
-                  <div id="id_0">
+                  <div class="has-image" id="id_0">
                   </div>
-                  <div>
+                  <div class="has-image">
                     <img class="u-img-fluid" src="{% static 'images/product/product-d-2.jpg' %}" alt="">
                   </div>
-                  <div>
+                  <div class="has-image">
                     <img class="u-img-fluid" src="{% static 'images/product/product-d-3.jpg' %}" alt="">
-                  </div>
+                  </div class="has-image">
                   <div>
                     <img class="u-img-fluid" src="{% static 'images/product/product-d-4.jpg' %}" alt="">
                   </div>
-                  <div>
+                  <div class="has-image">
                     <img class="u-img-fluid" src="{% static 'images/product/product-d-5.jpg' %}" alt="">
                   </div>
                 </div>

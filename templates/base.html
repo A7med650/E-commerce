@@ -103,7 +103,24 @@
         url: $(this).attr("data-url"),
         dataType: 'json',
         success: function (response) {
-          console.log(response.product_title);
+          var clear = 0;
+          var l = (Object.keys(response.category_list).length) - 1;
+          $.each(response.category_list, function (index, value) {
+            var i = index + 1;
+            if (index == 0) {
+              $(".has:gt(" + clear + ")").remove();
+            }
+            if (l == index) {
+              $("#separator_" + index).after($('<li class="has is-marked"></li>').attr("id", "separator_" + i));
+              $("#separator_" + i).append($('<a href="shop-side-version-2.html"></a>').attr("id", "text-content" + index));
+              $("#text-content" + index).append(value);
+            }
+            else {
+              $("#separator_" + index).after($('<li class="has-separator has"></li>').attr("id", "separator_" + i));
+              $("#separator_" + i).append($('<a href="shop-side-version-2.html"></a>').attr("id", "text-content" + index));
+              $("#text-content" + index).append(value);
+            }
+          });
           $(".pd-detail__name").empty().append(response.product_title);
           $(".pd-detail__price").empty().append('$' + response.product_price);
           if (response.product_sale_price) {
@@ -115,18 +132,15 @@
           $("#image1-slide").empty().attr("src", response.product_image);
           $(".pd-detail__preview-desc").empty().append(response.product_description);
           $.each(response.product_images, function (index, value) {
-            console.log(index);
-            console.log(value['fields']['image']);
             if (index == 0) {
-              $("#id_0").html('<img style="position: absolute;" id="image2-slide" class="u-img-fluid" src="" alt="">');
-              $("#image2-slide").attr("src", '/media/' + value['fields']['image']);
+              //$(".has-image:gt(" + clear + ")").remove();
+              $("#id_0").empty().append($('<img style="position: absolute;" class="u-img-fluid" src="" alt="">').attr("src", '/media/' + value['fields']['image']));
             }
             else {
               var i = index - 1;
               var selector = "#id_" + i;
-              $(selector).after($('<div></div>').attr('id', 'id_' + index));
-              //$("#id_" + index).empty();
-              //$("#id_" + index).append($('<img style="position: absolute;" class="u-img-fluid" src="" alt="">').attr("src", '/media/' + value['fields']['image']));
+              //$(selector).after($('<div class=" has-image slick-slide slick-current slick-active" style="width: 269px;" tabindex="0" data-slick-index="" aria-hidden="false"></div>').attr({ 'id': 'id_' + index, "data-slick-index": index }));
+              //$("#id_" + index).empty().append($('<img style="position: absolute;" class="u-img-fluid" src="" alt="">').attr("src", '/media/' + value['fields']['image']));
             }
           });
         }
