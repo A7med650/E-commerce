@@ -56,7 +56,7 @@
                   <span class="product-o__category">
                     <a href="shop-side-version-2.html">{{ product.get_cat_list.0 }}</a></span>
                   <span class="product-o__name">
-                    <a href="{% url 'products:product_detail' product.slug %}">{{ product.title|truncatechars:25}}</a>
+                    <a href="{% url 'products:product_detail' product.slug %}">{{ product.title|truncatechars:25 }}</a>
                   </span>
 
                   <div class="product-o__rating gl-rating-style">

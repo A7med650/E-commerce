@@ -124,3 +124,14 @@ class ProductImage(models.Model):
         if url is None:
             url = ''
         return url
+
+
+class ProductCountdown(models.Model):
+    """Model definition for ProductCountdown."""
+
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    expiry_date = models.DateTimeField()
+    active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.product.title

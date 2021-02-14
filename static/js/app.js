@@ -1,6 +1,63 @@
 /**
  * This is main script file that contains JS code.
  */
+
+var x;
+try{
+    x = document.getElementById('expiry_date').getAttribute("data-countdown");
+}
+catch{
+    x=null;
+}
+
+if(x!=null)
+{
+    var product_date = Date.parse(x);
+
+    setInterval(()=>{
+        const now = new Date().getTime();
+        const diff = product_date - now;
+        const d = Math.floor(product_date/(1000*60*60*24)-(now/(1000*60*60*24)));
+        const h = Math.floor((product_date/(1000*60*60)-(now/(1000*60*60)))%24);
+        const m = Math.floor((product_date/(1000*60)-(now/(1000*60)))%60);
+        const s = Math.floor((product_date/(1000)-(now/(1000)))%60);
+        if(diff>0){
+            document.getElementById("day").innerHTML = d;
+            document.getElementById("hour").innerHTML = h;
+            document.getElementById("minute").innerHTML = m;
+            document.getElementById("second").innerHTML = s;
+        }
+    },1000);
+}
+
+var x1;
+try{
+    x1 = document.getElementById('expiry_date1').getAttribute("data-countdown");
+}
+catch{
+    x1=null;
+}
+
+if(x1!=null)
+{
+    var product_date1 = Date.parse(x1);
+
+    setInterval(()=>{
+        const now = new Date().getTime();
+        const diff = product_date1 - now;
+        const d = Math.floor(product_date1/(1000*60*60*24)-(now/(1000*60*60*24)));
+        const h = Math.floor((product_date1/(1000*60*60)-(now/(1000*60*60)))%24);
+        const m = Math.floor((product_date1/(1000*60)-(now/(1000*60)))%60);
+        const s = Math.floor((product_date1/(1000)-(now/(1000)))%60);
+        if(diff>0){
+            document.getElementById("day1").innerHTML = d;
+            document.getElementById("hour1").innerHTML = h;
+            document.getElementById("minute1").innerHTML = m;
+            document.getElementById("second1").innerHTML = s;
+        }
+    },1000);
+}
+
 (function ($) {
     // Main Object
     var RESHOP = {};
@@ -333,7 +390,7 @@
                 var $this = $(this),
                     finalDate = $(this).data('countdown');
                 $this.countdown(finalDate, function (event) {
-                      $this.html(event.strftime('<div class="countdown__content"><div><span class="countdown__value">%D</span><span class="countdown__key">Days</span></div></div><div class="countdown__content"><div><span class="countdown__value">%H</span><span class="countdown__key">Hours</span></div></div><div class="countdown__content"><div><span class="countdown__value">%M</span><span class="countdown__key">Mins</span></div></div><div class="countdown__content"><div><span class="countdown__value">%S</span><span class="countdown__key">Secs</span></div></div>'));
+                      //$this.html(event.strftime(''));
                 });
             });
         }
@@ -672,7 +729,7 @@
         RESHOP.testimonialSlider();
         RESHOP.appConfiguration();
         RESHOP.isotopeFilter();
-        RESHOP.timerCountDown();
+        // RESHOP.timerCountDown();
         RESHOP.initInputCounter();
         RESHOP.blogPostGallery();
         RESHOP.blogPostVideo();

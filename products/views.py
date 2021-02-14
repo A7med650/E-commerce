@@ -9,7 +9,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.core import serializers
 
-from .models import Category, Product, ProductImage
+from .models import Category, Product, ProductImage, ProductCountdown
 
 # Create your views here.
 
@@ -51,11 +51,14 @@ def home(request):
 
     products_top_trending = Product.objects.all()[:8]
 
+    product_countdown = ProductCountdown.objects.all()[:2]
+
     context = {
         'categories': category_list,
         'category_dict': category_dict,
         'subcategory_list': list(subcategory_list),
         'products_top_trending': products_top_trending,
+        'product_countdown': product_countdown,
         'val': "False",
     }
     return render(request, 'index.html', context)

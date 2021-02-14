@@ -136,6 +136,9 @@
               //$(".has-image:gt(" + clear + ")").remove();
               $("#id_0").empty().append($('<img style="position: absolute;" class="u-img-fluid" src="" alt="">').attr("src", '/media/' + value['fields']['image']));
             }
+            if (index == 1) {
+              $("#id_1").empty().append($('<img style="position: absolute;" class="u-img-fluid" src="" alt="">').attr("src", '/media/' + value['fields']['image']));
+            }
             else {
               var i = index - 1;
               var selector = "#id_" + i;

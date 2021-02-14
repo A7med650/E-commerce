@@ -22,19 +22,49 @@
   <div class="section__content">
     <div class="container">
       <div class="row">
+
         <div class="col-lg-6 col-md-6 u-s-m-b-30">
           <div class="product-o product-o--radius product-o--hover-off u-h-100">
             <div class="product-o__wrap">
               <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-                <img class="aspect__img" src="{% static 'images/product/electronic/product11.jpg' %}" alt=""></a>
+                <img class="aspect__img" src="{{ product_countdown.0.product.image_url }}" alt=""></a>
               <div class="product-o__special-count-wrap">
-                <div class="countdown countdown--style-special" data-countdown="2020/05/01"></div>
+                <div class="countdown countdown--style-special" id="expiry_date"
+                  data-countdown="{{ product_countdown.0.expiry_date|date:'M d, Y H:m:s' }}">
+                  <div class="countdown__content">
+                    <div>
+                      <span class="countdown__value" id="day">00</span>
+                      <span class="countdown__key">Days</span>
+                    </div>
+                  </div>
+                  <div class="countdown__content">
+                    <div>
+                      <span class="countdown__value" id="hour">00</span>
+                      <span class="countdown__key">Hours</span>
+                    </div>
+                  </div>
+                  <div class="countdown__content">
+                    <div>
+                      <span class="countdown__value" id="minute">00</span>
+                      <span class="countdown__key">Mins</span>
+                    </div>
+                  </div>
+                  <div class="countdown__content">
+                    <div>
+                      <span class="countdown__value" id="second">00</span>
+                      <span class="countdown__key">Secs</span>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="product-o__action-wrap">
                 <ul class="product-o__action-list">
                   <li>
-                    <a data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top"
-                      title="Quick View"><i class="fas fa-search-plus"></i></a>
+                    <a class="quickview" data-modal="modal"
+                      data-url="{% url 'products:product-quick-view' product_countdown.0.product.id %}"
+                      data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View">
+                      <i class="fas fa-search-plus"></i>
+                    </a>
                   </li>
                   <li>
                     <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top"
@@ -52,30 +82,67 @@
               </div>
             </div>
             <span class="product-o__category">
-              <a href="shop-side-version-2.html">Electronics</a></span>
+              <a href="shop-side-version-2.html">{{ product_countdown.0.product.get_cat_list.0 }}</a></span>
             <span class="product-o__name">
-              <a href="product-detail.html">DJI Phantom Drone 4k</a></span>
+              <a href="product-detail.html">{{ product_countdown.0.product.title|truncatechars:50 }}</a></span>
             <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                 class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
               <span class="product-o__review">(2)</span>
             </div>
-            <span class="product-o__price">$125.00
-              <span class="product-o__discount">$160.00</span></span>
+            <span class="product-o__price">
+              ${{ product_countdown.0.product.price }}
+              {% if product_countdown.0.product.sale_price %}
+              <span class="product-o__discount">${{ product_countdown.0.product.sale_price }}</span>
+              {% endif %}
+            </span>
           </div>
         </div>
+
+
+        {% if product_countdown|length == 2 %}
+
         <div class="col-lg-6 col-md-6 u-s-m-b-30">
           <div class="product-o product-o--radius product-o--hover-off u-h-100">
             <div class="product-o__wrap">
               <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-                <img class="aspect__img" src="{% static 'images/product/electronic/product12.jpg' %}" alt=""></a>
+                <img class="aspect__img" src="{{ product_countdown.1.product.image_url }}" alt=""></a>
               <div class="product-o__special-count-wrap">
-                <div class="countdown countdown--style-special" data-countdown="2020/05/01"></div>
+                <div class="countdown countdown--style-special" id="expiry_date1"
+                  data-countdown="{{ product_countdown.1.expiry_date|date:'M d, Y H:m:s' }}">
+                  <div class="countdown__content">
+                    <div>
+                      <span class="countdown__value" id="day1">00</span>
+                      <span class="countdown__key">Days</span>
+                    </div>
+                  </div>
+                  <div class="countdown__content">
+                    <div>
+                      <span class="countdown__value" id="hour1">00</span>
+                      <span class="countdown__key">Hours</span>
+                    </div>
+                  </div>
+                  <div class="countdown__content">
+                    <div>
+                      <span class="countdown__value" id="minute1">00</span>
+                      <span class="countdown__key">Mins</span>
+                    </div>
+                  </div>
+                  <div class="countdown__content">
+                    <div>
+                      <span class="countdown__value" id="second1">00</span>
+                      <span class="countdown__key">Secs</span>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="product-o__action-wrap">
                 <ul class="product-o__action-list">
                   <li>
-                    <a data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top"
-                      title="Quick View"><i class="fas fa-search-plus"></i></a>
+                    <a class="quickview" data-modal="modal"
+                      data-url="{% url 'products:product-quick-view' product_countdown.1.product.id %}"
+                      data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View">
+                      <i class="fas fa-search-plus"></i>
+                    </a>
                   </li>
                   <li>
                     <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top"
@@ -93,17 +160,24 @@
               </div>
             </div>
             <span class="product-o__category">
-              <a href="shop-side-version-2.html">Electronics</a></span>
+              <a href="shop-side-version-2.html">{{ product_countdown.1.product.get_cat_list.0 }}</a></span>
             <span class="product-o__name">
-              <a href="product-detail.html">DJI Phantom Drone 2k</a></span>
+              <a href="product-detail.html">{{ product_countdown.1.product.title|truncatechars:50 }}</a></span>
             <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                 class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
               <span class="product-o__review">(2)</span>
             </div>
-            <span class="product-o__price">$125.00
-              <span class="product-o__discount">$160.00</span></span>
+            <span class="product-o__price">
+              ${{ product_countdown.1.product.price }}
+              {% if product_countdown.1.product.sale_price %}
+              <span class="product-o__discount">${{ product_countdown.1.product.sale_price }}</span>
+              {% endif %}
+            </span>
           </div>
         </div>
+
+        {% endif %}
+
       </div>
     </div>
   </div>
