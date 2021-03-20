@@ -6,7 +6,7 @@
     <div class="primary-nav">
 
       <!--====== Main Logo ======-->
-      <a class="main-logo" href="index.html">
+      <a class="main-logo" href="{% url 'products:home' %}">
         <img src="{% static 'images/logo/logo-1.png' %}" alt="">
       </a>
       <!--====== End - Main Logo ======-->
@@ -34,22 +34,30 @@
               <!--====== Dropdown ======-->
               <span class="js-menu-toggle"></span>
               <ul style="width:120px">
+
+                {% if user.is_authenticated %}
                 <li>
                   <a href="dashboard.html"><i class="fas fa-user-circle u-s-m-r-6"></i>
                     <span>Account</span></a>
                 </li>
+                {% endif %}
+
                 <li>
-                  <a href="signup.html"><i class="fas fa-user-plus u-s-m-r-6"></i>
+                  <a href="{% url 'account_signup' %}"><i class="fas fa-user-plus u-s-m-r-6"></i>
                     <span>Signup</span></a>
                 </li>
                 <li>
-                  <a href="signin.html"><i class="fas fa-lock u-s-m-r-6"></i>
+                  <a href="{% url 'account_login' %}"><i class="fas fa-lock u-s-m-r-6"></i>
                     <span>Signin</span></a>
                 </li>
+
+                {% if user.is_authenticated %}
                 <li>
                   <a href="signup.html"><i class="fas fa-lock-open u-s-m-r-6"></i>
                     <span>Signout</span></a>
                 </li>
+                {% endif %}
+
               </ul>
               <!--====== End - Dropdown ======-->
             </li>

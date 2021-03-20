@@ -1,0 +1,30 @@
+{% load socialaccount %}
+
+{% get_providers as socialaccount_providers %}
+
+<div class="gl-s-api">
+
+  {% for provider in socialaccount_providers %}
+
+  {% if forloop.first %}
+  <div class="u-s-m-b-15">
+    <button title="{{provider.name}}" class="gl-s-api__btn gl-s-api__btn--gplus {{provider.id}}" type="button"
+      onclick="window.location.href='{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}'">
+      <i class="fab fa-google"></i>
+      <span>Signin with Google</span>
+    </button>
+  </div>
+  {% else %}
+  <div class="u-s-m-b-15">
+    <button title="{{provider.name}}" class="gl-s-api__btn gl-s-api__btn--fb {{provider.id}}" type="button"
+      onclick="window.location.href='{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}'">
+      <i class="fab fa-facebook-f"></i>
+      <span>Signin with Facebook</span>
+    </button>
+  </div>
+
+  {% endif %}
+
+  {% endfor %}
+
+</div>

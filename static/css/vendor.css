@@ -152,7 +152,7 @@ template {
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 @font-face {
-  font-family: Font Awesome\5 Free;
+  font-family: Font awesome\5 Free;
   font-style: normal;
   font-weight: 400;
   src: url(../webfonts/fa-regular-400.eot);
@@ -165,7 +165,7 @@ template {
   font-weight: 400;
 }
 @font-face {
-  font-family: Font Awesome\5 Free;
+  font-family: Font awesome\5 Free;
   font-style: normal;
   font-weight: 900;
   src: url(../webfonts/fa-solid-900.eot);
@@ -177,14 +177,14 @@ template {
 .fa,
 .far,
 .fas {
-  font-family: Font Awesome\5 Free;
+  font-family: Font awesome\5 Free;
 }
 .fa,
 .fas {
   font-weight: 900;
 }
 @font-face {
-  font-family: Font Awesome\5 Brands;
+  font-family: Font awesome\5 Brands;
   font-style: normal;
   font-weight: 400;
   src: url(../webfonts/fa-brands-400.eot);
@@ -194,7 +194,7 @@ template {
     url(../webfonts/fa-brands-400.ttf) format("truetype");
 }
 .fab {
-  font-family: Font Awesome\5 Brands;
+  font-family: Font awesome\5 Brands;
 }
 .fa,
 .fab,
@@ -8663,7 +8663,7 @@ template {
 }
 .owl-carousel .owl-item img {
   display: block;
-  width: 100%;
+  /* width: 100%; */
 }
 .owl-carousel .owl-dots.disabled,
 .owl-carousel .owl-nav.disabled {

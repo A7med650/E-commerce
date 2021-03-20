@@ -51,6 +51,8 @@ def home(request):
 
     products_top_trending = Product.objects.all()[:8]
 
+    products_new_arrival = Product.objects.all().order_by('-id')[:10]
+
     product_countdown = ProductCountdown.objects.all()[:2]
 
     context = {
@@ -59,6 +61,7 @@ def home(request):
         'subcategory_list': list(subcategory_list),
         'products_top_trending': products_top_trending,
         'product_countdown': product_countdown,
+        'products_new_arrival': products_new_arrival,
         'val': "False",
     }
     return render(request, 'index.html', context)

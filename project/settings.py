@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '#8xt_6opc!08ik&07s!!j0ps#63uvu&%&xt-nk1x#9_i4w1f0l'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -39,9 +40,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
+    # my apps
     'products',
-    'froala_editor',
+    'accounts',
+
+    'froala_editor',  # editor
+    'widget_tweaks',  # use to forms design
+
+    # use to authentication
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # authentication with social accounts
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +85,11 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 WSGI_APPLICATION = 'project.wsgi.application'
@@ -118,6 +138,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+SITE_ID = 1
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -149,3 +171,37 @@ FROALA_EDITOR_PLUGINS = ('char_counter', 'align',
 SIMPLEUI_HOME_INFO = False
 # SIMPLEUI_HOME_QUICK = False
 # SIMPLEUI_HOME_ACTION = False
+
+
+# Configuring email for development
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_PORT = config('EMAIL_PORT')
+
+# Configuration django allauth
+
+# 'username_email' ==> user login with username or email must put ACCOUNT_EMAIL_REQUIRED=True
+# 'email' ==> user login with email
+# 'username' ==> user login with username
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'  # 'username' 'email'
+
+# if True Must Enter Email else optional enter email
+ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_USERNAME_MIN_LENGTH = 6
+
+# the list of users not used
+ACCOUNT_USERNAME_BLACKLIST = []
+
+# if True or False not show the checkbox
+# if None show checkbox
+ACCOUNT_SESSION_REMEMBER = None
+
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 3
+
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.SignupForm'
