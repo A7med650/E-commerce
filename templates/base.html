@@ -134,10 +134,10 @@
           $.each(response.product_images, function (index, value) {
             if (index == 0) {
               //$(".has-image:gt(" + clear + ")").remove();
-              $("#id_0").empty().append($('<img style="position: absolute;" class="u-img-fluid" src="" alt="">').attr("src", '/media/' + value['fields']['image']));
+              $("#id_0").empty().append($('<img style="max-width: 100%; max-height: 100%;" class="u-img-fluid" src="" alt="">').attr("src", '/media/' + value['fields']['image']));
             }
             if (index == 1) {
-              $("#id_1").empty().append($('<img style="position: absolute;" class="u-img-fluid" src="" alt="">').attr("src", '/media/' + value['fields']['image']));
+              $("#id_1").empty().append($('<img style="max-width: 100%; max-height: 100%;" class="u-img-fluid" src="" alt="">').attr("src", '/media/' + value['fields']['image']));
             }
             else {
               var i = index - 1;
