@@ -12,7 +12,7 @@
         <div class="pd-breadcrumb u-s-m-b-30">
           <ul class="pd-breadcrumb__list">
             <li class="has-separator">
-              <a href="index.hml">Home</a>
+              <a href="{% url 'products:home' %}">Home</a>
             </li>
 
             {% for index in product.get_cat_list %}
@@ -37,26 +37,17 @@
         <div class="pd u-s-m-b-30">
           <div class="slider-fouc pd-wrap">
             <div id="pd-o-initiate">
-              <div class="pd-o-img-wrap" data-src="{% static 'images/product/product-d-1.jpg' %}">
-                <img class="u-img-fluid" src="{% static 'images/product/product-d-1.jpg' %}"
-                  data-zoom-image="{% static 'images/product/product-d-1.jpg' %}" alt="">
+              <div class="pd-o-img-wrap" data-src="{{ product.image_url }}">
+                <img class="u-img-fluid" src="{{ product.image_url }}" data-zoom-image="{{ product.image_url }}" alt="">
               </div>
-              <div class="pd-o-img-wrap" data-src="{% static 'images/product/product-d-2.jpg' %}">
-                <img class="u-img-fluid" src="{% static 'images/product/product-d-2.jpg' %}"
-                  data-zoom-image="{% static 'images/product/product-d-2.jpg' %}" alt="">
+
+              {% for product_image in product_images %}
+              <div class="pd-o-img-wrap" data-src="{{ product_image.image_url }}">
+                <img class="u-img-fluid" src="{{ product_image.image_url }}"
+                  data-zoom-image="{{ product_image.image_url }}" alt="">
               </div>
-              <div class="pd-o-img-wrap" data-src="{% static 'images/product/product-d-3.jpg' %}">
-                <img class="u-img-fluid" src="{% static 'images/product/product-d-3.jpg' %}"
-                  data-zoom-image="{% static 'images/product/product-d-3.jpg' %}" alt="">
-              </div>
-              <div class="pd-o-img-wrap" data-src="{% static 'images/product/product-d-4.jpg' %}">
-                <img class="u-img-fluid" src="{% static 'images/product/product-d-4.jpg' %}"
-                  data-zoom-image="{% static 'images/product/product-d-4.jpg' %}" alt="">
-              </div>
-              <div class="pd-o-img-wrap" data-src="{% static 'images/product/product-d-5.jpg' %}">
-                <img class="u-img-fluid" src="{% static 'images/product/product-d-5.jpg' %}"
-                  data-zoom-image="{% static 'images/product/product-d-5.jpg' %}" alt="">
-              </div>
+              {% endfor %}
+
             </div>
             <span class="pd-text">Click for larger zoom</span>
           </div>
@@ -64,20 +55,13 @@
             <div class="slider-fouc">
               <div id="pd-o-thumbnail">
                 <div>
-                  <img class="u-img-fluid" src="{% static 'images/product/product-d-1.jpg' %}" alt="">
+                  <img class="u-img-fluid" src="{{ product.image_url }}" alt="">
                 </div>
+                {% for product_image in product_images %}
                 <div>
-                  <img class="u-img-fluid" src="{% static 'images/product/product-d-2.jpg' %}" alt="">
+                  <img class="u-img-fluid" src="{{ product_image.image_url }}" alt="">
                 </div>
-                <div>
-                  <img class="u-img-fluid" src="{% static 'images/product/product-d-3.jpg' %}" alt="">
-                </div>
-                <div>
-                  <img class="u-img-fluid" src="{% static 'images/product/product-d-4.jpg' %}" alt="">
-                </div>
-                <div>
-                  <img class="u-img-fluid" src="{% static 'images/product/product-d-5.jpg' %}" alt="">
-                </div>
+                {% endfor %}
               </div>
             </div>
           </div>

@@ -105,6 +105,7 @@
         success: function (response) {
           var clear = 0;
           var l = (Object.keys(response.category_list).length) - 1;
+          // Add the category list for the product
           $.each(response.category_list, function (index, value) {
             var i = index + 1;
             if (index == 0) {
@@ -121,16 +122,113 @@
               $("#text-content" + index).append(value);
             }
           });
+          // Add the title of the product
           $(".pd-detail__name").empty().append(response.product_title);
+          // Add the price of the product
           $(".pd-detail__price").empty().append('$' + response.product_price);
+          // Add the sale price of the product
           if (response.product_sale_price) {
             $(".pd-detail__del").empty().append('$' + response.product_sale_price);
           } else {
             $(".pd-detail__del").empty();
           }
-          $("#image1").empty().attr("src", response.product_image);
-          $("#image1-slide").empty().attr("src", response.product_image);
+          // Add the description of the product
           $(".pd-detail__preview-desc").empty().append(response.product_description);
+          // Start images
+          $("#image1").empty().attr("src", response.product_image);
+          $.each(response.product_images, function (index, value) {
+            var isLastElement = index == response.product_images.length - 1;
+            if (isLastElement) {
+              var i;
+              for (i = index + 1; i < 6; i++) {
+                var number = i + 2;
+                $("#image" + number).hide();
+              }
+            }
+            if (index == 0) {
+              if ($('#image2').css('display') == 'none') {
+                $('#image2').show();
+              }
+              $("#image2").empty().append($('<img class="u-img-fluid" alt="">').attr("src", '/media/' + value['fields']['image']));
+            }
+            if (index == 1) {
+              if ($('#image3').css('display') == 'none') {
+                $('#image3').show();
+              }
+              $("#image3").empty().append($('<img class="u-img-fluid" alt="">').attr("src", '/media/' + value['fields']['image']));
+            }
+            if (index == 2) {
+              if ($('#image4').css('display') == 'none') {
+                $('#image4').show();
+              }
+              $("#image4").empty().append($('<img class="u-img-fluid" alt="">').attr("src", '/media/' + value['fields']['image']));
+            }
+            if (index == 3) {
+              if ($('#image5').css('display') == 'none') {
+                $('#image5').show();
+              }
+              $("#image5").empty().append($('<img class="u-img-fluid" alt="">').attr("src", '/media/' + value['fields']['image']));
+            }
+            if (index == 4) {
+              if ($('#image6').css('display') == 'none') {
+                $('#image6').show();
+              }
+              $("#image6").empty().append($('<img class="u-img-fluid" alt="">').attr("src", '/media/' + value['fields']['image']));
+            }
+            if (index == 5) {
+              if ($('#image7').css('display') == 'none') {
+                $('#image7').show();
+              }
+              $("#image7").empty().append($('<img class="u-img-fluid" alt="">').attr("src", '/media/' + value['fields']['image']));
+            }
+          });
+          $("#image1-slide").empty().attr("src", response.product_image);
+          $.each(response.product_images, function (index, value) {
+            var isLastElement = index == response.product_images.length - 1;
+            if (isLastElement) {
+              var i;
+              for (i = index + 1; i < 6; i++) {
+                $("#id_" + i).hide();
+              }
+            }
+            if (index == 0) {
+              if ($('#id_0').css('display') == 'none') {
+                $('#id_0').show();
+              }
+              $("#id_0").empty().append($('<img class="u-img-fluid" alt="">').attr("src", '/media/' + value['fields']['image']));
+            }
+            if (index == 1) {
+              if ($('#id_1').css('display') == 'none') {
+                $('#id_1').show();
+              }
+              $("#id_1").empty().append($('<img class="u-img-fluid" alt="">').attr("src", '/media/' + value['fields']['image']));
+            }
+            if (index == 2) {
+              if ($('#id_2').css('display') == 'none') {
+                $('#id_2').show();
+              }
+              $("#id_2").empty().append($('<img class="u-img-fluid" alt="">').attr("src", '/media/' + value['fields']['image']));
+            }
+            if (index == 3) {
+              if ($('#id_3').css('display') == 'none') {
+                $('#id_3').show();
+              }
+              $("#id_3").empty().append($('<img class="u-img-fluid" alt="">').attr("src", '/media/' + value['fields']['image']));
+            }
+            if (index == 4) {
+              if ($('#id_4').css('display') == 'none') {
+                $('#id_4').show();
+              }
+              $("#id_4").empty().append($('<img class="u-img-fluid" alt="">').attr("src", '/media/' + value['fields']['image']));
+            }
+            if (index == 5) {
+              if ($('#id_5').css('display') == 'none') {
+                $('#id_5').show();
+              }
+              $("#id_5").empty().append($('<img class="u-img-fluid" alt="">').attr("src", '/media/' + value['fields']['image']));
+            }
+          });
+          /*
           $.each(response.product_images, function (index, value) {
             if (index == 0) {
               //$(".has-image:gt(" + clear + ")").remove();
@@ -146,6 +244,8 @@
               //$("#id_" + index).empty().append($('<img style="position: absolute;" class="u-img-fluid" src="" alt="">').attr("src", '/media/' + value['fields']['image']));
             }
           });
+          */
+          // End images
         }
       })
     });
