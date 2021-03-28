@@ -4,7 +4,7 @@ Configure the administrator for both Order and Book.
 
 from django.contrib import admin
 
-from .models import Product, ProductImage, Category, ProductCountdown
+from .models import Product, ProductImage, Category, ProductCountdown, Logo
 
 # Register your models here.
 
@@ -111,6 +111,19 @@ class ProductCountdownAdmin(admin.ModelAdmin):
         form.base_fields['product'].queryset = Product.objects.filter(
             sale_price__isnull=False).exclude(id__in=product_chooser_remove)
         return form
+
+
+@admin.register(Logo)
+class LogoAdmin(admin.ModelAdmin):
+    """display Model of Logo with some modifications to its functionality."""
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def has_add_permission(self, request):
+        if Logo.objects.count() > 0:
+            return False
+        return super().has_add_permission(request)
 
 
 admin.site.register(ProductImage)

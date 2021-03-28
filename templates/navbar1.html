@@ -7,7 +7,13 @@
 
       <!--====== Main Logo ======-->
       <a class="main-logo" href="{% url 'products:home' %}">
-        <img src="{% static 'images/logo/logo-1.png' %}" alt="">
+
+        {% if logo.image_url != '' %}
+        <img style="max-width: 100%; max-height: 100%; width: 87px;" src="{{ logo.image_url }}" alt="Logo">
+        {% else %}
+        <img style="max-width: 100%; max-height: 100%; width: 87px;"
+          src="{% static 'images/logo/logo-removebg-preview.png' %}" alt="Logo">
+        {% endif %}
       </a>
       <!--====== End - Main Logo ======-->
 
@@ -83,23 +89,6 @@
                     </li>
                     <li>
                       <a>ESPANOL</a>
-                    </li>
-                  </ul>
-                  <!--====== End - Dropdown ======-->
-                </li>
-                <li class="has-dropdown has-dropdown--ul-right-100">
-                  <a>Currency<i class="fas fa-angle-down u-s-m-l-6"></i></a>
-                  <!--====== Dropdown ======-->
-                  <span class="js-menu-toggle"></span>
-                  <ul style="width:225px">
-                    <li>
-                      <a class="u-c-brand">$ - US DOLLAR</a>
-                    </li>
-                    <li>
-                      <a>£ - BRITISH POUND STERLING</a>
-                    </li>
-                    <li>
-                      <a>€ - EURO</a>
                     </li>
                   </ul>
                   <!--====== End - Dropdown ======-->

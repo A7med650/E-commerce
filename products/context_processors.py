@@ -1,5 +1,5 @@
 import collections
-from .models import Category
+from .models import Category, Logo
 from .views import SubcategoryIndex
 
 
@@ -36,3 +36,9 @@ def menu_list(request):
     }
 
     return context
+
+
+def logo(request):
+    return {
+        'logo': Logo.objects.get(id=1),
+    }

@@ -135,3 +135,24 @@ class ProductCountdown(models.Model):
 
     def __str__(self):
         return self.product.title
+
+
+class Logo(models.Model):
+    logo = models.ImageField(
+        upload_to='logo/', blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Logo"
+        verbose_name_plural = "Logo"
+
+    def __str__(self):
+        return 'Main Logo'
+
+    @property
+    def image_url(self):
+        """this function check if it image is none or not."""
+
+        url = self.logo.url
+        if url is None:
+            url = ''
+        return url
