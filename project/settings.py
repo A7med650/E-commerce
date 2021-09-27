@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+from django.contrib.messages import constants as messages
 from pathlib import Path
 import os
 from dotenv import load_dotenv
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     'carts',
 
     'debug_toolbar',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -169,3 +171,19 @@ DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.redirects.RedirectsPanel',
     'debug_toolbar.panels.profiling.ProfilingPanel',
 ]
+
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
+}
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'am8540689@gmail.com'  # write your email here
+EMAIL_HOST_PASSWORD = 'eglbmnlllxacawcq'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
