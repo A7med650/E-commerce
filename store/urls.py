@@ -9,4 +9,6 @@ urlpatterns = [
     path('store/category/<slug:category_slug>/<slug:product_slug>/',
          views.product_detail, name='product_detail'),
     path('store/search/', views.search, name='search'),
+    path('store/submit-review/<int:product_id>/',
+         views.submit_review, name='submit_review'),
 ]
